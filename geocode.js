@@ -14,7 +14,7 @@ input_file.addEventListener("change", function () {
       var address_list_with_ccd = [];
       for(var int = 0; int < address_list.length; int++) {
         var querystring = encodeURI(address_list[int]);
-        var url = base_url + querystring
+        var url = base_url + querystring;
 				fetch(url).then(function(response) {
 					console.log('Status:', response.status);
 					response.json().then(function(response) {
