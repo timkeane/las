@@ -5,6 +5,7 @@ var responses;
 
 function writeOutput() {
   if (responses.processed == responses.orderedRequests.length) {
+    console.log(responses);
     for (var i = 0; i < responses.orderedRequests.length; i++) {
       var address = responses.orderedRequests[i];
       output.textContent += (responses[address]);
@@ -22,7 +23,7 @@ function writeSuccesOutput(geoclientResp) {
      * This will not always be the right answer.
      * For example: if the input is '2 Broadway'
      * with no city, borough or zip provided, there
-     * will be 3 results, each from a different borough
+     * will be 3 results, each from a different borough.
      */
     var cityCouncil = geoclientResp['results'][0].response.cityCouncilDistrict;
     var addressWithCcd = address + ' City Council District ' + cityCouncil + '\n';
@@ -42,8 +43,7 @@ function writeErrorOutput(error) {
 }
 
 function geocode(address) {
-  var querystring = encodeURI(address);
-  var url = baseUrl + querystring;
+  var url = baseUrl + encodeURI(address);
   fetch(url).then(function(response) {
     response.json().then(writeSuccesOutput);
   }).catch(error => {console.error(error);});
