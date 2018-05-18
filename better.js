@@ -46,7 +46,7 @@ function geocode(address) {
   var url = baseUrl + querystring;
   fetch(url).then(function(response) {
     response.json().then(writeSuccesOutput);
-  }).catch(writeErrorOutput);
+  }).catch(error => {console.error(error);});
 }
 
 var reader = new FileReader();
